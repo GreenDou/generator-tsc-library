@@ -1,0 +1,18 @@
+{
+  "main": "dist/es5/index.js",
+  "module": "dist/es6/index.js",
+  "types": "dist/types/index.d.ts",
+  "scripts": {
+    "lint": "tslint --project tsconfig.json",
+    "build:es5": "tsc",
+    "build:es6": "tsc -m es6 --outDir dist/es6",
+    "clean": "rm -rf ./dist",
+    "build":
+      "npm run clean && npm run build:es5 -- --sourceMap && npm run build:es6 -- --sourceMap",
+    "build:prod": "npm run clean && npm run build:es5 && npm run build:es6",
+    "watch:es5": "npm run build:es5 -- -w",
+    "watch:es6": "npm run build:es6 -- -w",
+    "prepush": "npm run lint && npm run build:es5 -q",
+    "prepack": "npm run lint && npm run build:prod -q"
+  }
+}
